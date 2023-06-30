@@ -1,1 +1,1 @@
-sudo brightnessctl --device='input2::scrolllock' set 1
+sudo brightnessctl --device='input3::scrolllock' set 1
