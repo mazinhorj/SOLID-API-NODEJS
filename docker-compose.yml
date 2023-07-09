@@ -1,4 +1,6 @@
-# docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql
+# subir banco postgres no docker com a imagem da bitnami passando os parametros de usuario, senha, db e porta
+
+# docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=0p9o8iMzPgDckr -e POSTGRESQL_DATABASE=api-solid -p 5432:5432 bitnami/postgresql
 
 
 version: '3'
@@ -10,5 +12,5 @@ services:
       - 5432:5432
     environment:
       - POSTGRESQL_USERNAME=docker
-      - POSTGRESQL_PASSWORD=docker
-      - POSTGRESQL_DATABASE=apisolid
+      - POSTGRESQL_PASSWORD=0p9o8iMzPgDckr
+      - POSTGRESQL_DATABASE=api-solid

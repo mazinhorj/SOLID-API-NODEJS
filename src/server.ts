@@ -1,7 +1,7 @@
 import { app } from './app'
 import { env } from './env'
 
-const theAuthor: string = 'Osmar Menezes da Silva (Mazinho)'
+const theAuthor = 'Osmar Menezes da Silva (Mazinho)'
 
 app
   .listen({
