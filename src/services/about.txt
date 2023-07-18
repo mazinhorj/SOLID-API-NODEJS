@@ -3,4 +3,8 @@ a pasta também ode ser chamada de use-cases
 
 SOLID
 
-Dependency inversion principle
+S - 
+O - 
+L - 
+I - 
+D - Dependency inversion principle
