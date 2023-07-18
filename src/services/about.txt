@@ -1,1 +1,6 @@
 a pasta também ode ser chamada de use-cases
+
+
+SOLID
+
+Dependency inversion principle

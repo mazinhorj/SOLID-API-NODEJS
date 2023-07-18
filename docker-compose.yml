@@ -5,12 +5,10 @@
 
 version: '3'
 
-
-
 services:
 
   api-solid-pg:
-    container_name: api-solid-teste
+    container_name: api-solid-db-pg
     image: bitnami/postgresql
     ports:
       - 5432:5432
