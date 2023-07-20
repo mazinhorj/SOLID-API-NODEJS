@@ -47,7 +47,7 @@ describe('Register Service', () => {
       password: '87654321',
     })
 
-    expect(() =>
+    await expect(() =>
       registerService.executeRegisterService({
         name: 'Mazinho teste',
         email,

@@ -132,3 +132,7 @@ dist
 
 # App Build
 build
+
+
+# tests
+coverage
