@@ -1,4 +1,4 @@
-a pasta também ode ser chamada de use-cases
+a pasta também pode ser chamada de use-cases
 
 
 SOLID
