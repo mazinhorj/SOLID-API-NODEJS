@@ -27,5 +27,5 @@ export async function authenticate(req: FastifyRequest, rep: FastifyReply) {
     // return rep.status(500).send() // Ajeitar depois
   }
 
-  return rep.status(200).send
+  return rep.status(200).send()
 }
