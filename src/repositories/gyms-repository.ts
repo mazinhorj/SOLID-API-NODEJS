@@ -1,7 +1,7 @@
-import { Gym } from '@prisma/client'
+import { Gym, Prisma } from '@prisma/client'
 
 export interface GymsRepository {
   findById(id: string): Promise<Gym | null>
-  // findByEmail(email: string): Promise<User | null>;
-  // create(data: Prisma.GymCreateInput): Promise<Gym>;
+  findByTitle(title: string): Promise<Gym | null>
+  create(data: Prisma.GymCreateInput): Promise<Gym>
 }

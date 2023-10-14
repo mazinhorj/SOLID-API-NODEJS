@@ -3,6 +3,8 @@ import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-c
 import { CheckInService } from './check-in.service'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
 import { Decimal } from '@prisma/client/runtime/library'
+import { MaxNumberOfCheckInsError } from './errors/max-num-of-check-ins-error'
+import { MaxDistanceError } from './errors/max-distance-error.ts'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
@@ -15,19 +17,21 @@ let sut: CheckInService
 // -22.5512081,-42.9843400 latitude / longitude Lelê
 
 describe('CheckIn Service', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInService(checkInsRepository, gymsRepository)
     vi.useFakeTimers()
-    gymsRepository.items.push({
+
+    const gym = await gymsRepository.create({
       id: 'gym01',
       title: 'Brainly Gym',
       description: '',
       phone: '',
-      latitude: new Decimal(-22.8619307),
-      longitude: new Decimal(-43.3332244),
+      latitude: -22.8619307,
+      longitude: -43.3332244,
     })
+    // console.log(`Id da academia: ${gym.id}`)
   })
 
   afterEach(() => {
@@ -42,7 +46,7 @@ describe('CheckIn Service', () => {
       userLatitude: -22.8619307,
       userLongitude: -43.3332244,
     })
-    console.log(checkIn.created_at)
+    // console.log(checkIn.created_at)
 
     expect(checkIn.id).toEqual(expect.any(String))
   })
@@ -55,7 +59,7 @@ describe('CheckIn Service', () => {
       userLatitude: -22.8619307,
       userLongitude: -43.3332244,
     })
-    console.log(checkIn.created_at)
+    // console.log(checkIn.created_at)
 
     expect(() =>
       sut.execute({
@@ -64,7 +68,7 @@ describe('CheckIn Service', () => {
         userLatitude: -22.8619307,
         userLongitude: -43.3332244,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
   it('should be able to check-in twice but in different day', async () => {
@@ -86,7 +90,7 @@ describe('CheckIn Service', () => {
     expect(checkIn.id).toEqual(expect.any(String))
   })
 
-  it('should be able to check-in in a distant gym', async () => {
+  it('should not be able to check-in in a distant gym', async () => {
     gymsRepository.items.push({
       id: 'gym02',
       title: 'Muscle Gym',
@@ -103,6 +107,6 @@ describe('CheckIn Service', () => {
         userLatitude: -22.8620849,
         userLongitude: -43.3328484,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
