@@ -8,7 +8,7 @@
   - [x] Must be able to sign up;
   - [x] Must be able to authenticate;
   - [x] Must be able to get an authenticated user profile;
-  - [ ] Must be able to get how much check-ins from an authenticated user;
+  - [x] Must be able to get how much check-ins from an authenticated user;
   - [x] Must be able to get its own check-ins history;
   - [ ] Must be able to get gymns nearby;
   - [ ] Must be able to get gymns by name;
